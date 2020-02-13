@@ -4,6 +4,7 @@ import com.joker.DesignePattern.structuralDesignPatterns.adepterDesignPattern.dt
 import com.joker.DesignePattern.structuralDesignPatterns.adepterDesignPattern.service.SocketAdepter;
 import com.joker.DesignePattern.structuralDesignPatterns.adepterDesignPattern.service.SocketClassAdepterImpl;
 import com.joker.DesignePattern.structuralDesignPatterns.adepterDesignPattern.service.SocketObjectAdepterImpl;
+import com.joker.DesignePattern.utility.Utilities;
 
 /**
  * Purpose : To Test the Adapter Design pattern
@@ -14,25 +15,71 @@ import com.joker.DesignePattern.structuralDesignPatterns.adepterDesignPattern.se
 public class Tester {
 	// main function
 	public static void main(String[] args) {
+		try {
+			Volt v;
+			System.out.println("using SocketObjectAdepterImpl class implementation");
+			SocketObjectAdepterImpl objectAdepter = new SocketObjectAdepterImpl();
+			int n = 0;
+			do {
+				System.out.println("Enter your choice");
+				System.out.println("1.Exit \t2.3volt \t3.12volt \t4.120volt");
+				n = Utilities.integerInput();
+				
+				switch (n) {
+				case 2:
+					v = getVolt(objectAdepter, 3);
+					System.out.println("V3 Volte = " + v.getVolt());
+					break;
+					
+				case 3:
+					v = getVolt(objectAdepter, 12);
+					System.out.println("V3 Volte = " + v.getVolt());
+					break;
 
-		System.out.println("using SocketObjectAdepterImpl class implementation");
-		SocketObjectAdepterImpl objectAdepter = new SocketObjectAdepterImpl();
-		Volt oV3 = getVolt(objectAdepter, 3);
-		Volt oV12 = getVolt(objectAdepter, 12);
-		Volt oV120 = getVolt(objectAdepter, 120);
-		System.out.println("V3 Volte = " + oV3.getVolt());
-		System.out.println("V12 Volte = " + oV12.getVolt());
-		System.out.println("V120 Volte = " + oV120.getVolt());
+				case 4:
+					v = getVolt(objectAdepter, 120);
+					System.out.println("V3 Volte = " + v.getVolt());
+					break;
 
-		System.out.println("using SocketClassAdepterImpl class implementation");
-		SocketClassAdepterImpl classAdepter = new SocketClassAdepterImpl();
-		Volt cV3 = getVolt(classAdepter, 3);
-		Volt cV12 = getVolt(classAdepter, 12);
-		Volt cV120 = getVolt(classAdepter, 120);
-		System.out.println("V3 volte =" + cV3.getVolt());
-		System.out.println("V12 volte =" + cV12.getVolt());
-		System.out.println("V120 volte =" + cV120.getVolt());
+				default:
+					System.out.println("no such volte available");
+					break;
+				}
+			} while (n != 1);
+			
 
+			System.out.println("using SocketClassAdepterImpl class implementation");
+			SocketClassAdepterImpl classAdepter = new SocketClassAdepterImpl();
+			int n1 = 0;
+			do {
+				System.out.println("Enter your choice");
+				System.out.println("1.Exit \t2.3volt \t3.12volt \t4.120volt");
+				n1 = Utilities.integerInput();
+				
+				switch (n1) {
+				case 3:
+					v = getVolt(classAdepter, 3);
+					System.out.println("V3 Volte = " + v.getVolt());
+					break;
+					
+				case 12:
+					v = getVolt(classAdepter, 12);
+					System.out.println("V3 Volte = " + v.getVolt());
+					break;
+
+				case 120:
+					v = getVolt(classAdepter, 120);
+					System.out.println("V3 Volte = " + v.getVolt());
+					break;
+
+				default:
+					System.out.println("no such volte available");
+					break;
+				}
+			} while (n != 1);
+		} catch (Exception e) {
+			System.out.println(e.getClass());
+		}
 	}
 
 	// function for select the volt
